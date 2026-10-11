@@ -53,3 +53,7 @@
 #savediv {
     margin-top: 30px;
 }
+#confirm {
+    display: none;
+    color: chartreuse;
+}

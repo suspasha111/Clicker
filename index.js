@@ -170,7 +170,7 @@ diamondb.onclick = function () {
 }
 
 saveb.onclick = function () {
-    localStorage.save = JSON.stringify({money, clickpower, autopower, clicksperclick});
+    localStorage.save = JSON.stringify({money, clickpower, autopower, clicksperclick, });
     confirmtext.style.display = "block";
 }
 
@@ -189,8 +189,8 @@ loadb.onclick = function () {
 }
 resetb.onclick = function () {
     if (confirm("ARE YOU SURE")) {
-        localStorage.clear();
-        allElementRefresh();
+        localStorage.removeItem("save");
+        location.reload();
     }
 
 }
