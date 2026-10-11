@@ -1,5 +1,9 @@
 "use strict"
 
+// SAVE & LOAD
+let saveb = document.getElementById("save");
+let loadb = document.getElementById("load");
+
 
 //MONEY VARS
 let button = document.getElementById("button");
@@ -131,7 +135,12 @@ autob10.onclick = function () {
 }
 
 duoclickb.onclick = function () {
-    if (money < 10500) {
+    if (clicksperclick >= 2) {
+        console.warn("DO NOT CHEAT!")
+        doubleonoroff.textContent = "DOUBLE CLICK: ON (yay you bought it)";
+        duoclickdiv.remove();
+    }
+    else if (money < 10500) {
         broke.style.display = "block";
     }
     else {
@@ -156,6 +165,24 @@ diamondb.onclick = function () {
     moneypress = 0;
     money += 10000;
     allElementRefresh();
+}
+
+saveb.onclick = function () {
+    localStorage.save = JSON.stringify({money, clickpower, autopower, clicksperclick});
+}
+
+loadb.onclick = function () {
+    if (localStorage.save != null) {
+        let save = JSON.parse(localStorage.save)
+        money = save.money;
+        clickpower = save.clickpower;
+        clicksperclick = save.clicksperclick;
+        autopower = save.autopower;
+        allElementRefresh();
+    }
+    else {
+        console.error("NO SAVE DETECTED")
+    }
 }
 
 //Autoclicker function and cycle
