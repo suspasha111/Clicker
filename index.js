@@ -3,7 +3,8 @@
 // SAVE & LOAD
 let saveb = document.getElementById("save");
 let loadb = document.getElementById("load");
-
+let resetb = document.getElementById("reset");
+let confirmtext = document.getElementById("confirm");
 
 //MONEY VARS
 let button = document.getElementById("button");
@@ -61,6 +62,7 @@ function allElementRefresh() {
     autoctext.textContent = "Cost: " + autoc + "$";
     autoctext10.textContent = "Cost: " + autoc10 + "$";
     autoptext.textContent = "Autoclicker power: " + autopower + "$ per second";
+    confirmtext.style.display = "none";
     //Element refresh
     if (moneypress === 50) {
         goldenb.style.display = "block";
@@ -169,6 +171,7 @@ diamondb.onclick = function () {
 
 saveb.onclick = function () {
     localStorage.save = JSON.stringify({money, clickpower, autopower, clicksperclick});
+    confirmtext.style.display = "block";
 }
 
 loadb.onclick = function () {
@@ -183,6 +186,13 @@ loadb.onclick = function () {
     else {
         console.error("NO SAVE DETECTED")
     }
+}
+resetb.onclick = function () {
+    if (confirm("ARE YOU SURE")) {
+        localStorage.clear();
+        allElementRefresh();
+    }
+
 }
 
 //Autoclicker function and cycle
